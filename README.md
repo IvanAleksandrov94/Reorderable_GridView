@@ -1,6 +1,8 @@
 # Reorderable GridView Example
 
-drag & drop GridView in Flutter
+The basis of the package was [Dragablegridview_Flutter](https://pub.dev/packages/dragablegridview_flutter#-readme-tab-).
+
+I cleaned it up and left only drag & drop for simplicity Gridiew in flutter
 
 
 ## Look gif example ;)
