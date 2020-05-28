@@ -4,6 +4,8 @@ The basis of the package was [Dragablegridview_Flutter](https://pub.dev/packages
 
 I cleaned it up and left only drag & drop for simplicity Gridiew in flutter
 
+Settings and design are similar to the basic GridView
+
 
 ## Look gif example ;)
 
