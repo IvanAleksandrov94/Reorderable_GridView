@@ -83,8 +83,8 @@ class  DragAbleGridViewState <T extends DragAbleGridViewBin> extends State<DragA
   void initState() {
     super.initState();
     widget.editSwitchController.dragAbleGridViewState=this;
-    controller = new AnimationController(duration:  Duration(milliseconds : widget.animationDuration), vsync: this);
-    animation = new Tween(begin:0.0,end: 1.0).animate(controller)
+    controller = AnimationController(duration:  Duration(milliseconds : widget.animationDuration), vsync: this);
+    animation = Tween(begin:0.0,end: 1.0).animate(controller)
       ..addListener(() {
         T offsetBin;
         int childWidgetPosition;
@@ -204,7 +204,7 @@ class  DragAbleGridViewState <T extends DragAbleGridViewBin> extends State<DragA
 
   @override
   Widget build(BuildContext context) {
-    return new GridView.builder(
+    return GridView.builder(
         physics: physics,
         scrollDirection: Axis.vertical,
         itemCount: widget.itemBins.length,
@@ -225,7 +225,7 @@ class  DragAbleGridViewState <T extends DragAbleGridViewBin> extends State<DragA
             index: index,
             dragAbleGridViewBin: widget.itemBins[index],
             dragAbleViewListener: this,
-            child: new Stack(
+            child: Stack(
               alignment: Alignment.topRight,
               children: <Widget>[
                 widget.child(index),
@@ -603,7 +603,7 @@ class DragAbleContentViewState<T extends DragAbleGridViewBin> extends State<Drag
 
   @override
   Widget build(BuildContext context) {
-    return new GestureDetector(
+    return GestureDetector(
       onTapDown: widget.isOpenDragAble ? (detail){
         handleOnTapDownEvent(detail);
       } : null,
@@ -616,19 +616,19 @@ class DragAbleContentViewState<T extends DragAbleGridViewBin> extends State<Drag
       onTapUp: widget.isOpenDragAble ? (tapUpDetails){
         handleOnTapUp();
       } : null,
-      child:new Offstage(
+      child: Offstage(
         offstage: widget.dragAbleGridViewBin.offstage,
-        child: new Container(
+        child: Container(
           alignment: Alignment.center,
           key: widget.dragAbleGridViewBin.containerKey,
-          child: new OverflowBox(
+          child: OverflowBox(
               maxWidth: widget.screenWidth,
               maxHeight: widget.screenHeight,
               alignment: Alignment.center,
-              child: new Center(
-                child: new Container(
+              child: Center(
+                child: Container(
                   key: widget.dragAbleGridViewBin.containerKeyChild,
-                  transform: new Matrix4.translationValues(widget.dragAbleGridViewBin.dragPointX, widget.dragAbleGridViewBin.dragPointY, 0.0),
+                  transform: Matrix4.translationValues(widget.dragAbleGridViewBin.dragPointX, widget.dragAbleGridViewBin.dragPointY, 0.0),
                   child: widget.child,
                 ),
               )
@@ -686,7 +686,7 @@ class DragAbleContentViewState<T extends DragAbleGridViewBin> extends State<Drag
           timer.cancel();
         }
         setState(() {});
-        timer=new Timer(new Duration(milliseconds: 100), (){
+        timer=new Timer( Duration(milliseconds: 100), (){
           widget.dragAbleViewListener.onFingerPause(widget.index,dragPointX,dragPointY,updateDetail);
         });
       }
@@ -707,7 +707,7 @@ class DragAbleContentViewState<T extends DragAbleGridViewBin> extends State<Drag
 
   
   void _handLongPress() async{
-    await Future.delayed(new Duration(milliseconds: widget.longPressDuration));
+    await Future.delayed( Duration(milliseconds: widget.longPressDuration));
     if( widget.dragAbleGridViewBin.isLongPress){
       setState(() {
         widget.dragAbleGridViewBin.dragAble=true;
