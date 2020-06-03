@@ -44,13 +44,13 @@ class DragAbleGridView <T extends DragAbleGridViewBin> extends StatefulWidget{
 
   @override
   State<StatefulWidget> createState() {
-    return new DragAbleGridViewState<T>();
+    return DragAbleGridViewState<T>();
   }
 }
 
 class  DragAbleGridViewState <T extends DragAbleGridViewBin> extends State<DragAbleGridView> with SingleTickerProviderStateMixin implements DragAbleViewListener{
 
-  var physics=new ScrollPhysics();
+  var physics= ScrollPhysics();
   double screenWidth = 600.0;
   double screenHeight = 300.0;
   List<int> itemPositions;
@@ -174,7 +174,7 @@ class  DragAbleGridViewState <T extends DragAbleGridViewBin> extends State<DragA
   }
 
   void _initItemPositions(){
-    itemPositions=new List();
+    itemPositions= List();
     for(int i=0;i<widget.itemBins.length;i++){
       itemPositions.add(i);
     }
@@ -208,7 +208,7 @@ class  DragAbleGridViewState <T extends DragAbleGridViewBin> extends State<DragA
         physics: physics,
         scrollDirection: Axis.vertical,
         itemCount: widget.itemBins.length,
-        gridDelegate: new SliverGridDelegateWithFixedCrossAxisCount(
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: widget.crossAxisCount,
             childAspectRatio: widget.childAspectRatio,
             crossAxisSpacing: widget.crossAxisSpacing,
@@ -229,9 +229,9 @@ class  DragAbleGridViewState <T extends DragAbleGridViewBin> extends State<DragA
               alignment: Alignment.topRight,
               children: <Widget>[
                 widget.child(index),
-                new Offstage(
+                Offstage(
                   offstage: isHideDeleteIcon,
-                  child: new GestureDetector(
+                  child: GestureDetector(
                     child: widget.deleteIcon ?? Container(height: 0, width: 0),
                     onTap: () {
                       widget.deleteIconClickListener(index);
@@ -512,7 +512,7 @@ itemWidth = pressItemBin.containerKey.currentContext
       await _future;
     }
     setState(() {
-      List<T> itemBi = new List();
+      List<T> itemBi = List();
       T bin;
       for (int i = 0; i < itemPositions.length; i++) {
         bin=widget.itemBins[itemPositions[i]];
@@ -686,7 +686,7 @@ class DragAbleContentViewState<T extends DragAbleGridViewBin> extends State<Drag
           timer.cancel();
         }
         setState(() {});
-        timer=new Timer( Duration(milliseconds: 100), (){
+        timer= Timer( Duration(milliseconds: 100), (){
           widget.dragAbleViewListener.onFingerPause(widget.index,dragPointX,dragPointY,updateDetail);
         });
       }
